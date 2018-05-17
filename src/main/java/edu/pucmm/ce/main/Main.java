@@ -15,7 +15,7 @@ public class Main {
         Document doc = getDocumentByURL();
         Elements media = doc.select("[src]");
 
-        System.out.println("Cantidad de imágenes: " + countElements(media,"img"));
+        System.out.println("Cantidad de imágenes: " + countImgInP(doc));
 
     }
 
@@ -41,25 +41,33 @@ public class Main {
 
 //    a) Indicar la cantidad de lineas del recurso retornado.
 
-//    private int countLines(Document doc){
-//     EN CONSTRUCCION
-//    }
+    private static int countLines(Document doc){
+        String content = doc.outerHtml();
+       // String[] lines = content.split("\r\n|\r|\n"); hay que probar
+        String[] lines = content.split(System.getProperty("line.separator"));
+        return  lines.length;
+    }
 
+
+
+
+//    b) Indicar la cantidad de párrafos (p) que contiene el documento HTML.
+    private static int countP(Document doc){
+        return doc.select("p").size();
+    }
 
 
 //    c) Indicar la cantidad de imágenes (img) dentro de los párrafos que
 //    contiene el archivo HTML.
-//    b) Indicar la cantidad de párrafos (p) que contiene el documento HTML.
-
-    private static int countElements(Elements elements, String type){
+    private static int countImgInP(Document doc){
+        Elements paragraphs = doc.select("p");
         int ans = 0;
-        for(Element src : elements){
-            if (src.tagName().equals("img")) ans++;
+        for(Element paragraph : paragraphs){
+            ans += paragraph.select("img").size();
         }
-
         return ans;
-
     }
+
 //    d) indicar la cantidad de formularios (form) que contiene el HTML por
 //    categorizando por el método implementado POST o GET.
 
@@ -75,3 +83,9 @@ public class Main {
 
 
 }
+/*
+Para probar:
+
+http://www.createafreewebsite.net/paragraph_images.html
+
+ */
