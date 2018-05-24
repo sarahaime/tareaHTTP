@@ -115,7 +115,7 @@ public class Main {
         int i = 1;
         for(Element form: forms){
             if(form.attr("method").equalsIgnoreCase("post")){
-                System.out.println("Formulario Post#"+  i);
+                System.out.println("Formulario Post #"+  i);
                 String urlForm = form.absUrl("action");
                 if(urlForm == "") urlForm =  URL;
                 try {
@@ -138,7 +138,6 @@ public class Main {
 }
 /*
 Para probar:
-
 http://www.createafreewebsite.net/paragraph_images.html
 
 https://www.xataka.com/empresas-y-economia/los-viejos-programadores-nunca-mueren-y-silicon-valley-se-esta-dando-cuenta-de-ello
